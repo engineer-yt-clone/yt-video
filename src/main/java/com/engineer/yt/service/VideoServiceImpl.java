@@ -1,26 +1,37 @@
+
 package com.engineer.yt.service;
 
-import com.amazonaws.HttpMethod;
-import com.amazonaws.services.s3.AmazonS3;
+import com.engineer.yt.dto.request.VideoRequest;
+import com.engineer.yt.entity.Video;
+import com.engineer.yt.repository.VideoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Calendar;
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Service
 public class VideoServiceImpl {
     @Autowired
-    private AmazonS3 amazonS3;
+    VideoRepository videoRepository;
 
-    public static final int EXIST_TIME_PRESIGNED_URL = 10;
+    public String saveVideo(VideoRequest data) {
+        Video metaData = new Video();
+        Timestamp date = new Timestamp(new Date().getTime());
+        String response = "Video save success!";
+        try {
+            metaData.setUserId(data.getUserId()); //????
+            metaData.setTitle(data.getTitle());
+            metaData.setVideoId(data.getVideoId());
+            metaData.setDescription(data.getDescription());
+            metaData.setMediaUrl(data.getMediaUrl());
+            metaData.setCreatedAt(date);
+            metaData.setUpdatedAt(date);
 
-    public String generatePreSignedUrl(String filePath,
-                                       String bucketName,
-                                       HttpMethod httpMethod) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(new Date());
-        calendar.add(Calendar.MINUTE, EXIST_TIME_PRESIGNED_URL);
-        return amazonS3.generatePresignedUrl(bucketName, filePath, calendar.getTime(), httpMethod).toString();
+            videoRepository.save(metaData);
+            return response;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
