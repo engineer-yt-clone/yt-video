@@ -16,11 +16,14 @@ public class Video {
     @Column(name = "id")
     private BigInteger id;
 
-    @Column(name = "id_user")
-    private String id_user;
+    @Column(name = "user_id")
+    private String userId;
+
+    @Column(name = "video_id")
+    private String videoId;
 
     @Column(name = "media_url")
-    private String media_url;
+    private String mediaUrl;
 
     @Column(name = "title")
     private String title;
