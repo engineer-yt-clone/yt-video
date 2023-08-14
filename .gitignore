@@ -32,7 +32,7 @@ build/
 ### VS Code ###
 .vscode/
 
-### IntelliJ IDEA ###
+### IntelliJ application ###
 !**/src/main/resources/application.properties
 
 
