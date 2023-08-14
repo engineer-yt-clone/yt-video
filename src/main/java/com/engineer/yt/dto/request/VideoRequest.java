@@ -1,12 +1,12 @@
 package com.engineer.yt.dto.request;
 
-import com.engineer.yt.entity.Video;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
 @Data
 @Component
 public class VideoRequest {
+
     String userId;
     String videoId;
     String mediaUrl;
