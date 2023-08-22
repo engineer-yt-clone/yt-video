@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @AutoConfiguration
-@EnableJpaRepositories(basePackages = {"com.engineer.yt.repository"})
+@EnableJpaRepositories(basePackages = {"com.engineer.yt.modules.video.database"})
 @ComponentScan("com.engineer")
 public class VideoServiceApplication {
 
