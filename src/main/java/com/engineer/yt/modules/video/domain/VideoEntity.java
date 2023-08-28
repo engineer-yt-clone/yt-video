@@ -1,13 +1,14 @@
 package com.engineer.yt.modules.video.domain;
 
-import com.engineer.yt.modules.video.domain.types.VideoProps;
+import com.engineer.yt.modules.video.domain.types.VideoMapper;
 import jakarta.persistence.*;
+import lombok.Data;
 
-import java.math.BigInteger;
 import java.sql.Timestamp;
 
 @Entity
 @Table(name = "videos")
+@Data
 public class VideoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,23 +35,5 @@ public class VideoEntity {
 
     @Column(name = "updated_at")
     private Timestamp updatedAt;
-    @Transient
-    private VideoProps videoProps;
-
-    public VideoEntity(String userId, String videoId, VideoProps videoProps) {
-        Timestamp createdAt = new Timestamp(System.currentTimeMillis());
-        Timestamp updatedAt = new Timestamp(System.currentTimeMillis());
-        this.title = videoProps.getTitle().getValue();
-        this.description = videoProps.getDescription().getValue();
-        this.mediaUrl = videoProps.getMediaUrl();
-        this.userId = userId;
-        this.videoId = videoId;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-
-    }
-
-    public VideoEntity() {
-
-    }
+    
 }

@@ -22,6 +22,4 @@ public class CreateVideoCommand extends ApplicationEvent {
         this.title = title;
         this.description = description;
     }
-
-
 }

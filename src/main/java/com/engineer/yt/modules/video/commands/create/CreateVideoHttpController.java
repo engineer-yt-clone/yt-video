@@ -1,6 +1,5 @@
 package com.engineer.yt.modules.video.commands.create;
 
-import com.engineer.yt.dto.request.VideoRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,8 +12,8 @@ public class CreateVideoHttpController {
     private ApplicationEventPublisher eventPublisher;
 
     @PostMapping("/video/create")
-    public void saveVideo(@RequestBody VideoRequest data) {
-        CreateVideoCommand createVideoCommand = new CreateVideoCommand(data.getUserId(), data.getVideoId(), data.getMediaUrl(), data.getTitle(), data.getDescription());
+    public void saveVideo(@RequestBody CreateVideoRequestDto videoRequestDto) {
+        CreateVideoCommand createVideoCommand = new CreateVideoCommand(videoRequestDto.getUserId(), videoRequestDto.getVideoId(), videoRequestDto.getMediaUrl(), videoRequestDto.getTitle(), videoRequestDto.getDescription());
         eventPublisher.publishEvent(createVideoCommand);
     }
 }
